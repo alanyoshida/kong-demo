@@ -54,11 +54,19 @@ helm repo update
 
 `helm install kong kong/ingress -n kong --create-namespace`
 
+### Configure Service
+
 Change type: Loadbalancer to type: NodePort
+
+```yaml
+type: NodePort
+```
 
 `kubectl edit svc --namespace kong kong-gateway-proxy`
 
-Add `hostPort: 443` and `hostPort: 80` to container named proxy
+### Configure Proxy Container
+
+Now Add `hostPort: 443` and `hostPort: 80` to container named proxy
 
 ```yaml
 name: proxy
